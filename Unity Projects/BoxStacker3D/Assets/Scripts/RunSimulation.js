@@ -25,7 +25,7 @@ private var plans = new Array(); // I tried making this a 3d array, but it got t
 private var planFitnesses = new Array();
 
 function spawn_cube () {
-	spawn_position = Vector3(plans[((curPlanNum*cubeNum*3)+(count*3)-2)],((50)+(count*2)),plans[((curPlanNum*cubeNum*3)+(count*3)-1)]);
+	spawn_position = Vector3(plans[((curPlanNum*cubeNum*3)+(count*3)-2)],((20)+(count*2)),plans[((curPlanNum*cubeNum*3)+(count*3)-1)]);
 	switch(plans[((curPlanNum*cubeNum*3)+(count*3)-3)]) {
 		case 0:
 			var temp_spawn_cube1 = Instantiate(cube1, spawn_position, Quaternion.identity);
