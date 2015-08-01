@@ -21,11 +21,13 @@ private var topFitness = 0;
 private var simLoop = false;
 private var planLoop = true;
 private var firstPass = true;
-private var plans = new Array(); // I tried making this a 3d array, but it got too frustraiting
+private var plans = new Array();
 private var planFitnesses = new Array();
 
 function spawn_cube () {
-	spawn_position = Vector3(plans[((curPlanNum*cubeNum*3)+(count*3)-2)],((20)+(count*4)),plans[((curPlanNum*cubeNum*3)+(count*3)-1)]);
+    var spawnx = plans[((curPlanNum*cubeNum*3)+(count*3)-2)];
+	var spawnz = plans[((curPlanNum*cubeNum*3)+(count*3)-1)];
+	spawn_position = Vector3(spawnx,((-19.5f)+(count*1f)),(spawnz));
 	switch(plans[((curPlanNum*cubeNum*3)+(count*3)-3)]) {
 		case 0:
 			var temp_spawn_cube1 = Instantiate(cube1, spawn_position, Quaternion.identity);
@@ -87,11 +89,11 @@ function ReadFile(filepathIncludingFileName : String) {
     for (var i = 0; i < planNum; i++) {
     	for (var j = 1; j <= cubeNum; j++) {
        		input = sr.ReadLine();
-       		plans[((i*cubeNum*3)+(j*3)-3)] = parseInt(input); //enter block type
+       		plans[((i*cubeNum*3)+(j*3)-3)] = parseFloat(input)/10f; //enter block type
        		input = sr.ReadLine();
-       		plans[((i*cubeNum*3)+(j*3)-2)] = parseInt(input); //enter block X location
+       		plans[((i*cubeNum*3)+(j*3)-2)] = parseFloat(input)/10f; //enter block X location
        		input = sr.ReadLine();
-       		plans[((i*cubeNum*3)+(j*3)-1)] = parseInt(input); //enter block Z location
+       		plans[((i*cubeNum*3)+(j*3)-1)] = parseFloat(input)/10f; //enter block Z location
        	}
     }
     sr.Close();
@@ -118,7 +120,7 @@ function WriteFile(filepathIncludingFileName : String)
 }
 
 function Start () {
-	Physics.gravity = Vector3(0, -20.0, 0);
+	Physics.gravity = Vector3(0, -4.0, 0);
 	Application.runInBackground = true;
 }
 
